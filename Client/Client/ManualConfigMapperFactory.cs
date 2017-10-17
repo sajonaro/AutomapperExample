@@ -19,8 +19,13 @@ namespace Client
         {
             var automapperConfiguration = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<Order, PurchaseDetailsDTO>();
-                    cfg.CreateMap<Customer, PurchaseDetailsDTO>();
+                    //clientDTO
+                    cfg.CreateMap<Customer, ClientDTO>();
+
+                    //PurchaseDetailsDTO
+                    cfg.CreateMap<Product, PurchaseDetailsDTO>().
+                        ForMember(m => m.ProductName, opt =>
+                            opt.MapFrom(e => e.Name));
                 });
 
             return new Mapper(automapperConfiguration);

@@ -3,7 +3,6 @@ using Xunit;
 
 namespace Tests
 {
-    using System.Security.Cryptography.X509Certificates;
 
     using AutoMapper;
 
@@ -12,12 +11,19 @@ namespace Tests
 
     using Domain;
 
-    public class UnitTest1
+    public class TestFixture
     {
+        private readonly IMapper mapper;
+
+        public TestFixture()
+        {
+            //this.mapper = MapperFactory.GetMapper();
+            this.mapper = ManualConfigMapperFactory.GetMapper();
+        }
+
         [Fact]
         public void ProductToProductDTOTest()
         {
-            IMapper mapper = MapperFactory.GetMapper();
 
             var product = new Product{Name = "bicyle"};
 
@@ -29,7 +35,6 @@ namespace Tests
         [Fact]
         public void CustomerToClientTest()
         {
-            IMapper mapper = MapperFactory.GetMapper();
 
             var res = mapper.Map<Customer, ClientDTO>(new Customer{Name = "John"});
 
