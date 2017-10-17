@@ -8,23 +8,32 @@ namespace Tests
     using AutoMapper;
 
     using Client;
+    using Client.DTOS;
 
     using Domain;
 
     public class UnitTest1
     {
         [Fact]
-        public void Test1()
+        public void ProductToProductDTOTest()
         {
-            ReflectionBasedAutomapperConfiguration.ConfigureMapping();
+            IMapper mapper = MapperFactory.GetMapper();
 
-            var p = new Order{Amout = 10,PurchaseDEscription = "test"};
+            var product = new Product{Name = "bicyle"};
 
-            var res = Mapper.Map<PurchaseDetailsDTO>(p);
+            var res = mapper.Map<Product,PurchaseDetailsDTO>(product);
 
+            Assert.True(res.ProductName == "bicyle");
+        }
 
+        [Fact]
+        public void CustomerToClientTest()
+        {
+            IMapper mapper = MapperFactory.GetMapper();
 
-            Assert.True(res != null);
+            var res = mapper.Map<Customer, ClientDTO>(new Customer{Name = "John"});
+
+            Assert.True(res.Name == "John");
         }
 
     }
