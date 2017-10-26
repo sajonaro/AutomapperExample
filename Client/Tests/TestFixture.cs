@@ -24,11 +24,11 @@ namespace Tests
         [Fact]
         public void ProductToProductDTOTest()
         {
-
-            var product = new Product{Name = "bicyle"};
-
-            var res = mapper.Map<Product,PurchaseDetailsDTO>(product);
-
+            //arrange
+            var product = new Product { Name = "bicyle" };
+            //act
+            var res = mapper.Map<Product, PurchaseDetailsDTO>(product);
+            //assert
             Assert.True(res.ProductName == "bicyle");
         }
 
@@ -36,9 +36,10 @@ namespace Tests
         public void CustomerToClientTest()
         {
 
-            var res = mapper.Map<Customer, ClientDTO>(new Customer{Name = "John"});
+            var res = mapper.Map<Customer, ClientDTO>(new Customer { Name = "John", Orders = new Order[] { new Order(), new Order() } });
 
             Assert.True(res.Name == "John");
+            Assert.True(res.OrdersCount == 2);
         }
 
     }
