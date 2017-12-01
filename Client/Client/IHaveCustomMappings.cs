@@ -18,5 +18,6 @@ namespace Client
     /// <typeparam name="T"></typeparam>
     public interface IHaveCustomMappings<T> : IHaveCustomMappings
     {
+
     }
 }

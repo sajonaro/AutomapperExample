@@ -4,6 +4,8 @@ using System.Text;
 
 namespace Client
 {
+    using System.Linq;
+
     using AutoMapper;
 
     using Client.DTOS;
@@ -17,7 +19,8 @@ namespace Client
     {
         public static IMapper GetMapper()
         {
-            var automapperConfiguration = new MapperConfiguration(cfg =>
+            var automapperConfiguration = new MapperConfiguration(
+                cfg =>
                 {
                     //clientDTO
                     cfg.CreateMap<Customer, ClientDTO>();
